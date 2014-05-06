@@ -1,4 +1,4 @@
-# grunt-sketch
+# grunt-sketch [![Build Status](https://travis-ci.org/CodeCatalyst/grunt-sketch.png?branch=master)](https://travis-ci.org/CodeCatalyst/grunt-sketch)
 
 > A grunt plugin for exporting images from [Sketch](http://bohemiancoding.com/sketch/) documents via [SketchTool](http://bohemiancoding.com/sketch/tool/).
 
