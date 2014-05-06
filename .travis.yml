@@ -2,9 +2,10 @@ language: objective-c
 before_install:
   # Download, unzip and symlink SketchTool
   - "wget http://sketchtool.bohemiancoding.com/sketchtool-latest.zip"
-  - "unzip -q sketchtool-latest.zip"
+  - "unzip sketchtool-latest.zip"
   # Add SketchTool to the PATH
   - "export PATH=`pwd`/sketchtool-latest:$PATH"
+  - "echo $PATH"
   # Install Grunt CLI
   - "npm install -g grunt-cli"
   - "npm install"
