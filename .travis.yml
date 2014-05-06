@@ -5,9 +5,6 @@ before_install:
   - "unzip -q sketchtool-latest.zip"
   # Add SketchTool to the PATH
   - "export PATH=`pwd`/sketchtool-latest:$PATH"
-  # Install node.js
-  - "brew update"
-  - "brew install node"
   # Install Grunt CLI
   - "npm install -g grunt-cli"
   - "npm install"
