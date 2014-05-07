@@ -45,10 +45,8 @@ grunt.initConfig({
 				'jpg'
 			]
 		},
-		files: [ {
-			src: 'src/sketch/Grunt Logo.sketch',
-			dest: 'build/assets'
-		} ]
+		src: 'src/sketch/Grunt Logo.sketch',
+		dest: 'build/assets'
 	},
 
 	// ...
