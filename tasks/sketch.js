@@ -42,19 +42,30 @@ module.exports = function ( grunt ) {
 			],
 			options: [
 				{
-					name: 'items',
+					name: 'background'
+				},
+				{
+					name: 'bounds',
 					convert: flatten
+				},
+				{
+					name: 'compact',
+					convert: yesNo
+				},
+				{
+					name: 'compression'
 				},
 				{
 					name: 'formats',
 					convert: flatten
 				},
 				{
-					name: 'scales',
-					convert: flatten
+					name: 'groupContentsOnly',
+					alias: 'group-contents-only',
+					convert: yesNo
 				},
 				{
-					name: 'bounds',
+					name: 'items',
 					convert: flatten
 				},
 				{
@@ -63,15 +74,24 @@ module.exports = function ( grunt ) {
 					convert: yesNo
 				},
 				{
-					name: 'compression'
+					name: 'progressive',
+					convert: yesNo
 				},
 				{
-					name: 'progressive',
+					name: 'reveal',
 					convert: yesNo
 				},
 				{
 					name: 'saveForWeb',
 					alias: 'save-for-web',
+					convert: yesNo
+				},
+				{
+					name: 'scales',
+					convert: flatten
+				},
+				{
+					name: 'trimmed',
 					convert: yesNo
 				}
 			],
@@ -84,7 +104,7 @@ module.exports = function ( grunt ) {
 			parameters: [
 				{
 					name: 'type',
-					options: [ 'pages', 'artboards', 'slices' ],
+					options: [ 'pages', 'layers', 'artboards', 'slices' ],
 					required: true
 				}
 			],

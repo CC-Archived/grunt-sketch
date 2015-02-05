@@ -63,7 +63,7 @@ Exports elements from a Sketch document.
 
 #### options.type
 Type: `String`
-Valid values: `pages`, `artboards`, or `slices`.
+Valid values: `pages`, `layers`, `artboards`, or `slices`.
 
 The type of document element(s) to export.
 
@@ -85,16 +85,32 @@ Example values: `1.0`, `2.0`
 
 The scales to export.
 
+#### options.background
+Type: `String`
+Example values: `#000000`, `#ffffff`, `red`
+
+The background color.
+
 #### options.bounds
 Type: `String`
 Example value: `-631.000000,-336.000000,380.000000,444.000000`
 
 The boundary rectangle to export.
 
+#### options.trimmed
+Type: `Boolean`
+
+Indicates whether exported images should be trimmed.
+
 #### options.overwrite
 Type: `Boolean`
 
 Indicates whether to overwrite existing files when exporting.
+
+#### options.compact
+Type: `Boolean`
+
+Indicates whether to export compact SVG files.
 
 #### options.compression
 Type: `Number`
@@ -110,6 +126,16 @@ Indicates whether to export in progressive format, if applicable.
 Type: `Boolean`
 
 Indicates whether to "save for the web" - stripping unnecessary metadata.
+
+#### options.groupContentsOnly
+Type: `Boolean`
+
+Indicates whether to force the same behaviour as selecting the "Export Group Contents Only" option in a sketch slice.
+
+#### options.reveal
+Type: `Boolean`
+
+Indicates whether items should be revealed.
 
 ### Task: sketch_list
 
