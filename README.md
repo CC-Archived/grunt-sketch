@@ -29,7 +29,7 @@ grunt.initConfig({
 	// ...
 
 	sketch_export: {
-		gruntLogo: {
+		grunt_logo: {
 			options: {
 				type: 'slices',
 				items: [
