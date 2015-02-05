@@ -29,24 +29,26 @@ grunt.initConfig({
 	// ...
 
 	sketch_export: {
-		options: {
-			type: 'slices',
-			items: [
-				'Grunt Logo',
-				'Symbol',
-				'Text'
-			],
-			scales: [
-				1.0,
-				2.0
-			],
-			formats: [
-				'png',
-				'jpg'
-			]
-		},
-		src: 'src/sketch/Grunt Logo.sketch',
-		dest: 'build/assets'
+		gruntLogo: {
+			options: {
+				type: 'slices',
+				items: [
+					'Grunt Logo',
+					'Symbol',
+					'Text'
+				],
+				scales: [
+					1.0,
+					2.0
+				],
+				formats: [
+					'png',
+					'jpg'
+				]
+			},
+			src: 'src/sketch/Grunt Logo.sketch',
+			dest: 'build/assets'
+		}
 	},
 
 	// ...
