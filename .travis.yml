@@ -3,9 +3,10 @@ before_install:
   # Download, unzip and symlink SketchTool
   - "wget http://sketchtool.bohemiancoding.com/sketchtool-latest.zip"
   - "unzip sketchtool-latest.zip"
-  # Add SketchTool to the PATH
-  - "export PATH=`pwd`/sketchtool:$PATH"
-  - "echo $PATH"
+  # Install SketchTool
+  - "cd sketchtool"
+  - "./install.sh"
+  - "cd .."
   # Install Grunt CLI
   - "npm install -g grunt-cli"
   - "npm install"
