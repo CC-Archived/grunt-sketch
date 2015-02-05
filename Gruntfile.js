@@ -1,6 +1,6 @@
 /*
- * [grunt-sketch](http://github.com/CodeCatalyst/grunt-sketch) v1.0.1
- * Copyright (c) 2014 [CodeCatalyst, LLC](http://www.codecatalyst.com/).
+ * [grunt-sketch](http://github.com/CodeCatalyst/grunt-sketch) v1.0.2
+ * Copyright (c) 2014-2015 [CodeCatalyst, LLC](http://www.codecatalyst.com/).
  * Open source under the [MIT License](http://en.wikipedia.org/wiki/MIT_License).
  */
 
