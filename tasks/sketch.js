@@ -118,22 +118,39 @@ module.exports = function ( grunt ) {
 		}
 	];
 
+	// Ensure SketchTool is installed and available in the path.
+
+	function ensureSketchtool() {
+		try {
+			which.sync( bin );
+		} catch ( err ) {
+			grunt.warn(
+				'\nSketchTool must be installed and in your PATH for this task to work.\n' +
+				'Please see: https://github.com/CodeCatalyst/grunt-sketch\n'
+			);
+			return false;
+		}
+		return true;
+	}
+
 	// Internal helper functions.
 
 	function registerTask( task ) {
 		grunt.registerMultiTask( task.name, task.help, function () {
-			var done = this.async();
-			var options = this.options();
+			if(ensureSketchtool()) {
+				var done = this.async();
+				var options = this.options();
 
-			async.eachLimit( this.files, numCPUs, function ( file, next ) {
-				var command = createCommand( task, file, options );
-				if ( command ) {
-					executeCommand( command, next );
-				}
-				else {
-					next();
-				}
-			}, done );
+				async.eachLimit( this.files, numCPUs, function ( file, next ) {
+					var command = createCommand( task, file, options );
+					if ( command ) {
+						executeCommand( command, next );
+					}
+					else {
+						next();
+					}
+				}, done );
+			};
 		} );
 	}
 
@@ -230,17 +247,6 @@ module.exports = function ( grunt ) {
 			}
 			next();
 		} );
-	}
-
-	// Ensure SketchTool is installed and available in the path.
-
-	try {
-		which.sync( bin );
-	} catch ( err ) {
-		return grunt.warn(
-			'\nSketchTool must be installed and in your PATH for this task to work.\n' +
-			'Please see: https://github.com/CodeCatalyst/grunt-sketch\n'
-		);
 	}
 
 	// Register the tasks declared above.
