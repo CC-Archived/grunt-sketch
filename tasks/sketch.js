@@ -150,7 +150,9 @@ module.exports = function ( grunt ) {
 						next();
 					}
 				}, done );
-			};
+			} else {
+				done(false);
+			}
 		} );
 	}
 
