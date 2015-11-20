@@ -137,8 +137,8 @@ module.exports = function ( grunt ) {
 
 	function registerTask( task ) {
 		grunt.registerMultiTask( task.name, task.help, function () {
+			var done = this.async();
 			if(ensureSketchtool()) {
-				var done = this.async();
 				var options = this.options();
 
 				async.eachLimit( this.files, numCPUs, function ( file, next ) {
