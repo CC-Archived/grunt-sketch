@@ -1,7 +1,7 @@
 {
 	"name": "grunt-sketch",
 	"description": "Grunt plugin for Bohemian Coding's SketchTool",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"author": {
 		"name": "John Yanarella",
 		"email": "jmy@codecatalyst.com",
