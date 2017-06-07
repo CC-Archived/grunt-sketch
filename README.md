@@ -4,7 +4,7 @@
 
 ## Installation
 
-Download and install [SketchTool](http://bohemiancoding.com/sketch/tool/), and add it to your `PATH`.
+Install [SketchTool](http://bohemiancoding.com/sketch/tool/).
 
 This plugin requires Grunt `>=0.4.4`
 
@@ -61,9 +61,9 @@ grunt.initConfig({
 
 Exports elements from a Sketch document.
 
-#### options.type
+#### options.type (required)
 Type: `String`
-Valid values: `pages`, `layers`, `artboards`, or `slices`.
+Valid values: `artboards`, `layers`, `pages`, `preview` or `slices`.
 
 The type of document element(s) to export.
 
@@ -99,51 +99,63 @@ The boundary rectangle to export.
 
 #### options.trimmed
 Type: `Boolean`
+Default: `false`
 
 Indicates whether exported images should be trimmed.
 
 #### options.overwrite
 Type: `Boolean`
+Default: `false`
 
 Indicates whether to overwrite existing files when exporting.
 
 #### options.compact
 Type: `Boolean`
+Default: `false`
 
 Indicates whether to export compact SVG files.
 
 #### options.compression
 Type: `Number`
 
-Indicates the compression level to use when exporting, if applicable.
+The compression level to use when exporting, if applicable for the specified format(s).
 
 #### options.progressive
 Type: `Boolean`
 
-Indicates whether to export in progressive format, if applicable.
+Indicates whether to export in progressive format, if applicable for the specified format(s).
 
 #### options.saveForWeb
 Type: `Boolean`
+Default: `false`
 
 Indicates whether to "save for the web" - stripping unnecessary metadata.
 
 #### options.groupContentsOnly
 Type: `Boolean`
+Default: `false`
 
-Indicates whether to force the same behaviour as selecting the "Export Group Contents Only" option in a sketch slice.
+Indicates whether to export only layers that are contained with the group (i.e. forces "Export Group Contents Only" option for slices).
 
-#### options.reveal
+#### options.useIdForName
 Type: `Boolean`
+Default: `false`
 
-Indicates whether items should be revealed.
+Indicates whether to name exported images using their id rather than their name.
+
+#### options.includeSymbols
+Type: `Boolean`
+Default: `false`
+
+Indicates whether to include the ones that represent symbols when exporting artboards.
 
 ### Task: sketch_list
 
 Lists document element information in JSON format.
 
-#### options.type
+#### options.type (required)
 Type: `String`
-Valid values: `pages`, `artboards`, or `slices`.
+Valid values: `artboards`, `formats`, `pages`, or `slices`.
 
 The type of document element(s) to list.
 
@@ -159,7 +171,7 @@ Dumps document structure information in JSON format.
 
 ## License
 
-Copyright (c) 2014 [CodeCatalyst, LLC](http://www.codecatalyst.com/)
+Copyright (c) 2014-2017 [CodeCatalyst, LLC](http://www.codecatalyst.com/)
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation

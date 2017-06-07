@@ -1,6 +1,6 @@
 /*
- * [grunt-sketch](http://github.com/CodeCatalyst/grunt-sketch) v1.0.4
- * Copyright (c) 2014-2016 [CodeCatalyst, LLC](http://www.codecatalyst.com/).
+ * [grunt-sketch](http://github.com/CodeCatalyst/grunt-sketch) v1.0.5
+ * Copyright (c) 2014-2017 [CodeCatalyst, LLC](http://www.codecatalyst.com/).
  * Open source under the [MIT License](http://en.wikipedia.org/wiki/MIT_License).
  */
 
@@ -36,7 +36,7 @@ module.exports = function ( grunt ) {
 			parameters: [
 				{
 					name: 'type',
-					options: [ 'pages', 'artboards', 'slices' ],
+					options: [ 'artboards', 'layers', 'pages', 'preview', 'slices' ],
 					required: true
 				}
 			],
@@ -62,6 +62,11 @@ module.exports = function ( grunt ) {
 				{
 					name: 'groupContentsOnly',
 					alias: 'group-contents-only',
+					convert: yesNo
+				},
+				{
+					name: 'includeSymbols',
+					alias: 'include-symbols',
 					convert: yesNo
 				},
 				{
@@ -93,6 +98,11 @@ module.exports = function ( grunt ) {
 				{
 					name: 'trimmed',
 					convert: yesNo
+				},
+				{
+					name: 'useIdForName',
+					alias: 'use-id-for-name',
+					convert: yesNo
 				}
 			],
 			help: 'Exports elements from a Sketch document.'
@@ -104,7 +114,7 @@ module.exports = function ( grunt ) {
 			parameters: [
 				{
 					name: 'type',
-					options: [ 'pages', 'layers', 'artboards', 'slices' ],
+					options: [ 'artboards', 'formats', 'layers', 'pages', 'slices' ],
 					required: true
 				}
 			],
@@ -140,32 +150,23 @@ module.exports = function ( grunt ) {
 			if ( ensureSketchtool() ) {
 				var options = this.options();
 
-				async.eachLimit( this.files, numCPUs, function ( file, next ) {
-					var command = createCommand( task, file, options );
-					if ( command ) {
-						executeCommand( command, next );
-					}
-					else {
-						next();
-					}
+				var commands = [];
+				this.files.forEach( function( file ) {
+					file.src.filter( function ( src ) {
+						var command = createCommand( task, src, file.dest, options );
+						if ( command ) {
+							commands.push( command );
+						}
+					} );
+				});
+				
+				async.eachLimit( commands, numCPUs, function ( command, next ) {
+					executeCommand( command, next );
 				}, done );
 			} else {
 				done(false);
 			}
-
 		} );
-	}
-
-	function getSourceFile( file ) {
-		var src = file.src[0];
-		if ( !_.isString( src ) ) {
-			src = file.orig.src[ 0 ];
-		}
-		return src;
-	}
-
-	function getDestinationFile( file ) {
-		return file.dest;
 	}
 
 	function convertValue( value, convert ) {
@@ -191,10 +192,7 @@ module.exports = function ( grunt ) {
 		return '--' + name + '=' + value;
 	}
 
-	function createCommand( task, file, options ) {
-		var source = getSourceFile( file );
-		var destination = getDestinationFile( file );
-
+	function createCommand( task, source, destination, options ) {
 		if ( !grunt.file.exists( source ) ) {
 			grunt.warn( 'Source file "' + source + '" not found.' );
 			return null;
